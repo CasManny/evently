@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button } from "../ui/button";
+import Navitems from "./Navitems";
+import MobileNav from "./MobileNav";
 const Header = () => {
   return (
     <header className="w-full border-b px-5">
@@ -15,9 +17,15 @@ const Header = () => {
             alt="Evently logo"
           />
         </Link>
+        <SignedIn>
+          <nav className="md:flex-between hidden w-full max-w-xs">
+            <Navitems />
+          </nav>
+        </SignedIn>
         <div className="flex w-32 justify-end gap-3">
           <SignedIn>
-            <UserButton />
+            <UserButton /> 
+            <MobileNav />
           </SignedIn>
           <SignedOut>
             <Button asChild className="rounded-full" size="lg">
