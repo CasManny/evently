@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { mongo } from 'mongoose'
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
@@ -17,3 +17,4 @@ export const connectToDatabase = async () => {
     cached.conn = await cached.promise;
     return cached.conn;
 }
+
