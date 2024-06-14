@@ -25,6 +25,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // events: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Event'
+  // },
+  // orders: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Order'
+  // }
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

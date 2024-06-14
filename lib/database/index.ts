@@ -18,3 +18,6 @@ export const connectToDatabase = async () => {
     return cached.conn;
 }
 
+let createCach = (global as any).mongoose || { conn: null, promise: null }
+
+
