@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     console.error("Error verifying webhook:", error);
     return new Response("Error occured: ", { status: 400 });
   }
-  // Do something wit the payload
+  // Do something with the payload
   // For this guide, you simply log the payload to the console
   const { id } = evt.data;
   const eventType = evt.type;
