@@ -221,7 +221,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                     <p className="ml-3 whitespace-nowrap">Start date</p>
                     <DatePicker
                       selected={field.value}
-                      onChange={(date: Date) => field.onChange(date)}
+                      onChange={(date: Date | null) => field.onChange(date)}
                       showTimeSelect
                       timeInputLabel="Time:"
                       dateFormat={"dd/MM/yyyy h:mm aa"}
@@ -244,7 +244,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                     <p className="ml-3 whitespace-nowrap">End date</p>
                     <DatePicker
                       selected={field.value}
-                      onChange={(date: Date) => field.onChange(date)}
+                      onChange={(date: Date | null) => field.onChange(date)}
                       showTimeSelect
                       timeInputLabel="Time:"
                       dateFormat={"dd/MM/yyyy h:mm aa"}
@@ -311,9 +311,12 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex bg-grey-50 items-center rounded-2xl px-2 ">
-                  <Link />
-                  <Input placeholder="URL" {...field} className="input-field" />
-
+                    <Link />
+                    <Input
+                      placeholder="URL"
+                      {...field}
+                      className="input-field"
+                    />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -322,8 +325,13 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
           />
         </div>
 
-        <Button type="submit" size={'lg'} disabled={form.formState.isSubmitting} className="button col-span-2 w-full">
-          {form.formState.isSubmitting ? ('submitting...') : `${type} Event`}
+        <Button
+          type="submit"
+          size={"lg"}
+          disabled={form.formState.isSubmitting}
+          className="button col-span-2 w-full"
+        >
+          {form.formState.isSubmitting ? "submitting..." : `${type} Event`}
         </Button>
       </form>
     </Form>
