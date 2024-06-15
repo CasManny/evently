@@ -139,3 +139,11 @@ export type UpdateEventParams = {
   };
   path: string;
 };
+
+export type CreateOrderParams = {
+  stripeId: string;
+  eventId: string;
+  buyerId: string;
+  totalAmount: string;
+  createdAt: Date;
+};
