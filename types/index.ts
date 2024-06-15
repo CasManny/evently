@@ -121,3 +121,21 @@ export type SearchParamProps = {
     params: { id: string },
     searchParams: { [key: string]: string | string[] | undefined}
 }
+
+export type UpdateEventParams = {
+  userId: string;
+  event: {
+    _id: string;
+    title: string;
+    imageUrl: string;
+    description: string;
+    location: string;
+    startDateTime: Date;
+    endDateTime: Date;
+    categoryId: string;
+    price: string;
+    isFree: boolean;
+    url: string;
+  };
+  path: string;
+};

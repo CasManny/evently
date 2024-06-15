@@ -9,8 +9,8 @@ const EventDetails = async ({ params: { id } }: SearchParamProps) => {
   const event = await getEventById(id);
 
   return (
-    <section className="flex justify-center bg-primary-50 bg-dotter-pattern bg-contain">
-      <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
+    <section className="flex justify-center bg-primary-50 bg-dotter-pattern bg-contain mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl gap-2">
         <Image
           src={event?.imageUrl}
           alt="hero image"
@@ -33,7 +33,7 @@ const EventDetails = async ({ params: { id } }: SearchParamProps) => {
               <p className="p-medium-18 ml-2 mt-2 sm:mt-0">
                 by{" "}
                 <span className="text-primary-500">
-                  {event.organiser.firstName} {event.organiser.lastName}
+                  {event.organizer.firstName} {event.organizer.lastName}
                 </span>
               </p>
             </div>

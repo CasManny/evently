@@ -13,7 +13,7 @@ export interface IEvent extends Document {
   isFree: boolean;
   url?: string;
   category: { _id: string; name: string };
-  organiser: { _id: string; firstName: string, lastName: string };
+  organizer: { _id: string; firstName: string, lastName: string };
 }
 
 const eventSchema = new mongoose.Schema({
@@ -28,7 +28,7 @@ const eventSchema = new mongoose.Schema({
   isFree: { type: Boolean, default: false },
   url: { type: String },
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
-  organiser: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  organizer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 const Event = mongoose.models.Event || mongoose.model("Event", eventSchema);
