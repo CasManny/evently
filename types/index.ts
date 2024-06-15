@@ -40,9 +40,9 @@ export type DeleteEventParams = {
 
 export type GetAllEventsParams = {
     query: string,
-    userId: string,
     limit: number,
     page: number,
+    category: string,
 }
 
 export type GetEventsByUserParams = {

@@ -1,6 +1,6 @@
 "use server"
 
-import { CreateEventParams } from "@/types"
+import { CreateEventParams, DeleteEventParams, GetAllEventsParams } from "@/types"
 import { handleError } from "../utils"
 import { connectToDatabase } from "../database"
 import User from "../database/models/user.model"
@@ -13,6 +13,8 @@ const populateEvent = async (query: any) => {
         path: "category", model: Category, select: "_id, name"
     })
 }
+
+
 
 export const createEvent = async ({ event, userId, path }: CreateEventParams) => {
     try {
@@ -39,6 +41,37 @@ export const getEventById = async (eventId: string) => {
             throw new Error("Event not found")
         }
         return JSON.parse(JSON.stringify(event))
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+
+export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEventsParams) => {
+    try {
+        await connectToDatabase()
+        const conditions = {}
+        const eventQuery = Event.find(conditions).sort({ createdAt: 'desc' }).skip(0).limit(limit)
+        const events = await populateEvent(eventQuery)
+        const totalEventsCount = await Event.countDocuments(conditions)
+
+        return {
+            data: JSON.parse(JSON.stringify(events)),
+            totalPages: Math.ceil(totalEventsCount / limit)
+        }
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const deleteEvent = async ({ eventId, path }: DeleteEventParams) => {
+    try {
+        await connectToDatabase()
+        const deletedEvent = await Event.findOneAndDelete(eventId)
+        if (deletedEvent) {
+            revalidatePath(path)
+        }
+
     } catch (error) {
         handleError(error)
     }
